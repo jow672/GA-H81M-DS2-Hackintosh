@@ -1,4 +1,4 @@
-DefinitionBlock ("", "SSDT", 2, "ACDT", "MSPD", 0x00000000)
+DefinitionBlock ("", "SSDT", 2, "ACDT", "H81M", 0x00000000)
 {
     External (_PR_.CPU0, ProcessorObj)
     External (_SB_.PCI0, DeviceObj)
