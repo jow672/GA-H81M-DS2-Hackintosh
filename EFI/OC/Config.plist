@@ -10,25 +10,7 @@
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
-				<string>SSDT-MCHC.aml</string>
-			</dict>
-			<dict>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-EC.aml</string>
-			</dict>
-			<dict>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-SBUS.aml</string>
-			</dict>
-			<dict>
-				<key>Enabled</key>
-				<true/>
-				<key>Path</key>
-				<string>SSDT-CPU0.aml</string>
+				<string>SSDT-H81M.aml</string>
 			</dict>
 		</array>
 		<key>Block</key>
