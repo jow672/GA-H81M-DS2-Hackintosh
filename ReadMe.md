@@ -19,4 +19,5 @@
 - [更新日志](Changelog.md)
 ## 鸣谢
 - **宪武** 提供的 [OC-little](https://github.com/daliansky/OC-little)
-- **Acidanthera** 开发组提供 [OpenCore](https://github.com/daliansky/OC-little) 和 [所需驱动](https://github.com/acidanthera) 的开发维护
+- **Acidanthera** 开发组提供 [OpenCore](https://github.com/acidanthera/OpenCorePkg) 和 [所需驱动](https://github.com/acidanthera) 的开发维护
+
