@@ -14,10 +14,10 @@
 | 声卡     | 瑞昱 Realtek ALC887            |
 | 网卡     | 博通 BCM94360CS2               |
 - 因 Acidanthera 开发组的驱动不再对 Clover 做兼容性测试 , 放弃 Clover , 使用 OpenCore 引导方案
-- 由于主板只有 VGA 接口 , Nvidia 的 WebDriver 驱动 只支持到 10.13 , 所以暂时无缘 10.14 和10.15
-- [EFI 下载](https://github.com/xlivans/GA-H81M-DS2-Hackintosh/releases)
+- 由于主板只有 VGA 接口 , Nvidia 的 WebDriver 驱动 只支持到 10.13 , 所以暂时无缘更高的版本
+- [EFI Releases 下载](https://github.com/xlivans/GA-H81M-DS2-Hackintosh/releases)
 - [更新日志](Changelog.md)
 ## 鸣谢
-- **宪武** 提供的 [OC-little](https://github.com/daliansky/OC-little)
-- **Acidanthera** 开发组提供 [OpenCore](https://github.com/acidanthera/OpenCorePkg) 和 [所需驱动](https://github.com/acidanthera) 的开发维护
+- **宪武** 提供 [OC-little](https://github.com/daliansky/OC-little)
+- **Acidanthera** 提供 [OpenCore](https://github.com/acidanthera/OpenCorePkg) 和 [相关驱动](https://github.com/acidanthera)
 
