@@ -1,10 +1,10 @@
 DefinitionBlock ("", "SSDT", 2, "ACDT", "H81M", 0x00000000)
 {
-    External (_PR_.CPU0, ProcessorObj)
     External (_SB_.PCI0, DeviceObj)
     External (_SB_.PCI0.LPCB, DeviceObj)
-    External (_SB_.PCI0.SBUS.BUS0, DeviceObj)
-    Scope (_PR.CPU0)
+    External (_SB_.PCI0.SBUS, DeviceObj)
+    External (_PR_.CPU0, ProcessorObj)
+    If (_OSI ("Darwin"))
     {
         Method (DTGP, 5, NotSerialized)
         {
@@ -16,7 +16,7 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "H81M", 0x00000000)
                     {
                         Arg4 = Buffer (One)
                             {
-                                 0x03
+                                0x03
                             }
                         Return (One)
                     }
@@ -28,102 +28,81 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "H81M", 0x00000000)
             }
             Arg4 = Buffer (One)
                 {
-                     0x00
+                    0x00
                 }
             Return (Zero)
         }
-        Method (_DSM, 4, NotSerialized)
+        Scope (_SB)
         {
-            Local0 = Package (0x02)
-                {
-                    "plugin-type", 
-                    One
-                }
-            DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-            Return (Local0)
-        }
-    }
-    Scope (_SB.PCI0)
-    {
-        Device (MCHC)
-        {
-            Name (_ADR, Zero)
-            Method (_STA, 0, NotSerialized)
+            Device (USBX)
             {
-                If (_OSI ("Darwin"))
+                Name (_ADR, Zero)
+                Method (_DSM, 4, NotSerialized)
                 {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
+                    Local0 = Package ()
+                        {
+                            "kUSBSleepPortCurrentLimit",
+                            0x0960,
+                            "kUSBWakePortCurrentLimit",
+                            0x0960
+                        }
+                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                    Return (Local0)
                 }
             }
-        }
-    }
-    Scope (_SB.PCI0.LPCB)
-    {
-        Device (EC)
-        {
-            Name (_HID, "ACID0001")
-            Method (_STA, 0, NotSerialized)
+            Scope (PCI0)
             {
-                If (_OSI ("Darwin"))
+                Device (MCHC)
                 {
-                    Return (0x0F)
+                    Name (_ADR, Zero)
                 }
-                Else
+                Scope (LPCB)
                 {
-                    Return (Zero)
-                }
-            }
-        }
-    }
-    Device (_SB.PCI0.SBUS.BUS0)
-    {
-        Name (_CID, "smbus")
-        Name (_ADR, Zero)
-        Method (_STA, 0, NotSerialized)
-        {
-            If (_OSI ("Darwin"))
-            {
-                Return (0x0F)
-            }
-            Else
-            {
-                Return (Zero)
-            }
-        }
-        Device (DVL0)
-        {
-            Name (_ADR, 0x57)
-            Name (_CID, "diagsvault")
-            Method (_STA, 0, NotSerialized)
-            {
-                If (_OSI ("Darwin"))
-                {
-                    Return (0x0F)
-                }
-                Else
-                {
-                    Return (Zero)
-                }
-            }
-            Method (_DSM, 4, NotSerialized)
-            {
-                If (!Arg2)
-                {
-                    Return (Buffer (One)
+                    Device (EC)
                     {
-                         0x57
-                    })
+                        Name (_HID, "ACID0001")
+                    }
                 }
-                Return (Package (0x02)
+                Scope (SBUS)
                 {
-                    "address", 
-                    0x57
-                })
+                    Device (BUS0)
+                    {
+                        Name (_CID, "smbus")
+                        Name (_ADR, Zero)
+                        Device (DVL0)
+                        {
+                            Name (_ADR, 0x57)
+                            Name (_CID, "diagsvault")
+                            Method (_DSM, 4, NotSerialized)
+                            {
+                                Local0 = Package ()
+                                    {
+                                        "address", 
+                                        0x57
+                                    }
+                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                                Return (Local0)
+                            }
+                        }
+                    }
+                }
             }
         }
-    }
-}
+        Scope (_PR)
+        {
+            Scope (CPU0)
+            {
+                Method (_DSM, 4, NotSerialized)
+                {
+                    Local0 = Package ()
+                        {
+                            "plugin-type", 
+                            One
+                        }
+                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                    Return (Local0)
+                }
+            }
+        }
+    } 
+}      
