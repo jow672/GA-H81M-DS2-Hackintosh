@@ -1,90 +1,40 @@
 DefinitionBlock ("", "SSDT", 2, "ACDT", "H81M", 0x00000000)
 {
-    External (_SB_.PCI0, DeviceObj)
     External (_SB_.PCI0.LPCB, DeviceObj)
     External (_SB_.PCI0.SBUS, DeviceObj)
     External (_PR_.CPU0, ProcessorObj)
     If (_OSI ("Darwin"))
     {
-        Method (DTGP, 5, NotSerialized)
+        Device (_SB.PCI0.MCHC)
         {
-            If ((Arg0 == ToUUID ("a0b5b7c6-1318-441c-b0c9-fe695eaf949b")))
+            Name (_ADR, Zero)
+        }
+        Device (_SB.PCI0.LPCB.EC)
+        {
+            Name (_HID, "ACID0001")
+        }
+        Device (_SB.PCI0.SBUS.BUS0)
+        {
+            Name (_CID, "smbus")
+            Name (_ADR, Zero)
+            Device (DVL0)
             {
-                If ((Arg1 == One))
+                Name (_ADR, 0x57)
+                Name (_CID, "diagsvault")
+                Method (_DSM, 4, NotSerialized)
                 {
                     If ((Arg2 == Zero))
                     {
-                        Arg4 = Buffer (One)
-                            {
-                                0x03
-                            }
-                        Return (One)
-                    }
-                    If ((Arg2 == One))
-                    {
-                        Return (One)
-                    }
-                }
-            }
-            Arg4 = Buffer (One)
-                {
-                    0x00
-                }
-            Return (Zero)
-        }
-        Scope (_SB)
-        {
-            Device (USBX)
-            {
-                Name (_ADR, Zero)
-                Method (_DSM, 4, NotSerialized)
-                {
-                    Local0 = Package ()
+                        Return (Buffer (One)
                         {
-                            "kUSBSleepPortCurrentLimit",
-                            0x0960,
-                            "kUSBWakePortCurrentLimit",
-                            0x0960
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
-                }
-            }
-            Scope (PCI0)
-            {
-                Device (MCHC)
-                {
-                    Name (_ADR, Zero)
-                }
-                Scope (LPCB)
-                {
-                    Device (EC)
-                    {
-                        Name (_HID, "ACID0001")
+                            0x03
+                        })
                     }
-                }
-                Scope (SBUS)
-                {
-                    Device (BUS0)
+                    Return (Package ()
                     {
-                        Name (_CID, "smbus")
-                        Name (_ADR, Zero)
-                        Device (DVL0)
-                        {
-                            Name (_ADR, 0x57)
-                            Name (_CID, "diagsvault")
-                            Method (_DSM, 4, NotSerialized)
-                            {
-                                Local0 = Package ()
-                                    {
-                                        "address", 
-                                        0x57
-                                    }
-                                DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                                Return (Local0)
-                            }
-                        }
-                    }
+                        "address", 
+                        0x57
+                    })
                 }
             }
         }
@@ -94,13 +44,18 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "H81M", 0x00000000)
             {
                 Method (_DSM, 4, NotSerialized)
                 {
-                    Local0 = Package ()
+                    If ((Arg2 == Zero))
+                    {
+                        Return (Buffer (One)
                         {
-                            "plugin-type", 
-                            One
-                        }
-                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
-                    Return (Local0)
+                            0x03
+                        })
+                    }
+                    Return (Package ()
+                    {
+                        "plugin-type", 
+                        One
+                    })
                 }
             }
         }
