@@ -22,7 +22,7 @@
 	<string>1.0</string>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>iMac14,2-XHC</key>
+		<key>iMac14,3-XHC</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>com.apple.driver.AppleUSBMergeNub</string>
@@ -37,9 +37,7 @@
 			<key>IOProviderMergeProperties</key>
 			<dict>
 				<key>port-count</key>
-				<data>
-				EQAAAA==
-				</data>
+				<data>EQAAAA==</data>
 				<key>ports</key>
 				<dict>
 					<key>HS01</key>
@@ -47,77 +45,61 @@
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>port</key>
-						<data>
-						AQAAAA==
-						</data>
+						<data>AQAAAA==</data>
 					</dict>
 					<key>HS02</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>port</key>
-						<data>
-						AgAAAA==
-						</data>
+						<data>AgAAAA==</data>
 					</dict>
 					<key>HS03</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>port</key>
-						<data>
-						AwAAAA==
-						</data>
+						<data>AwAAAA==</data>
 					</dict>
 					<key>HS04</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>port</key>
-						<data>
-						BAAAAA==
-						</data>
+						<data>BAAAAA==</data>
 					</dict>
 					<key>HS05</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>0</integer>
 						<key>port</key>
-						<data>
-						BQAAAA==
-						</data>
+						<data>BQAAAA==</data>
 					</dict>
 					<key>HS08</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>255</integer>
 						<key>port</key>
-						<data>
-						CAAAAA==
-						</data>
+						<data>CAAAAA==</data>
 					</dict>
 					<key>SSP1</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>3</integer>
 						<key>port</key>
-						<data>
-						EAAAAA==
-						</data>
+						<data>EAAAAA==</data>
 					</dict>
 					<key>SSP2</key>
 					<dict>
 						<key>UsbConnector</key>
 						<integer>3</integer>
 						<key>port</key>
-						<data>
-						EQAAAA==
-						</data>
+						<data>EQAAAA==</data>
 					</dict>
 				</dict>
 			</dict>
 			<key>model</key>
-			<string>iMac14,2</string>
+			<string>iMac14,3</string>
 		</dict>
 	</dict>
 	<key>OSBundleRequired</key>
